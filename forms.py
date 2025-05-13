@@ -4,7 +4,7 @@ from wtforms import (
     SelectField,
     DateField,
     TimeField,
-    IntergerField,
+    IntegerField,
     SubmitField
 )
 from wtforms.validators import DataRequired
@@ -16,7 +16,7 @@ X_data = pd.concat([train, val], axis=0).drop(columns="price")
 class InputForm(FlaskForm):
     airline = SelectField(
         label="Airline",
-        choices=X_data.airline.unique().to_list(),
+        choices=X_data.airline.unique().tolist(),
         validators=[DataRequired()]
     )
 
@@ -27,27 +27,27 @@ class InputForm(FlaskForm):
 
     source = SelectField(
         label="Source",
-        choices=X_data.source.unique().to_list(),
+        choices=X_data.source.unique().tolist(),
         validators=[DataRequired()]
     )
     destination = SelectField(
         label="Destinantion",
-        choices=X_data.destinantion.unique().to_list(),
+        choices=X_data.destination.unique().tolist(),
         validators=[DataRequired()]
     )
     dep_time = TimeField(
-        label="Departure Time"
+        label="Departure Time",
         validators=[DataRequired()]
     )
     arrival_time = TimeField(
-        label="Arrival Time"
+        label="Arrival Time",
         validators=[DataRequired()]
     )
-    duration = IntergerField(
+    duration = IntegerField(
         label ="Duration",
         validators=[DataRequired()]
     )
-    total_stops = IntergerField(
+    total_stops = IntegerField(
         label ="Total Stops",
         validators=[DataRequired()]
     )
